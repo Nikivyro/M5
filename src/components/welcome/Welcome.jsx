@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import '../../data/fantasy.json'
 
 export class Welcome extends Component {
   render() {
     return (
-      <div className='jumbotron'>
+      <div className='jumbotron p-5 bg-dark text-white'>
         <Container>
             <Row>
                 <Col>
