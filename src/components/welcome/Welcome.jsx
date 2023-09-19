@@ -8,7 +8,7 @@ export class Welcome extends Component {
         <Container>
             <Row>
                 <Col>
-                    <h1>Titolo</h1>
+                    <h1>Welcome to Epicbooks</h1>
                 </Col>
             </Row>
         </Container>
