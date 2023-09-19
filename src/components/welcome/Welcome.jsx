@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-export class Welcome extends Component {
-  render() {
-    return (
+const Welcome = () => {
+  return(
       <div className='jumbotron p-5 bg-dark text-white'>
         <Container>
             <Row>
@@ -13,8 +12,7 @@ export class Welcome extends Component {
             </Row>
         </Container>
       </div>
-    )
-  }
+  )
 }
 
 export default Welcome
