@@ -14,8 +14,8 @@ export const getComments = createAsyncThunk (
         try {
             const response = await fetch(`${AllCommentURL}/${bookId}`, {
                 headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
                 }
             });
             return await response.json();
@@ -27,16 +27,23 @@ export const getComments = createAsyncThunk (
 
 export const addComment = createAsyncThunk(
     'comments/addComment',
-    async ({ bookId, newCommentData }) => {
+    async ({ newCommentData }) => {
+
         try {
             const response = await fetch(`${AllCommentURL}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
                 },
                 body: JSON.stringify(newCommentData),
             });
 
+            // console.log('Request URL:', `${AllCommentURL}`);
+            // console.log('Request Data:', JSON.stringify(newCommentData));
+            // console.log('Response Status:', response.status);
+            // console.log('Response Data:', await response.text());
+            
             if (!response.ok) {
                 throw new Error('Errore durante l\'aggiunta del commento');
             }
@@ -57,6 +64,10 @@ export const deleteComment = createAsyncThunk(
         try {
             const response = await fetch(`${AllCommentURL}/${commentId}`, {
                 method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
+                },
             });
 
             if (!response.ok) {
@@ -74,12 +85,13 @@ export const deleteComment = createAsyncThunk(
 
 export const updateComment = createAsyncThunk(
     'comments/updateComment',
-    async ({ bookId, commentId, updatedCommentData }) => {
+    async ({ commentId, updatedCommentData }) => {
         try {
             const response = await fetch(`${AllCommentURL}/${commentId}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
                 },
                 body: JSON.stringify(updatedCommentData),
             });
@@ -156,7 +168,7 @@ export default commentsSlice.reducer;
 
 
 
-{/* 
+/* 
     ENDPOINT
     https://striveschool-api.herokuapp.com/api/comments/
 
@@ -179,4 +191,4 @@ export default commentsSlice.reducer;
 
     Il form utilizzato per i metodi dovrà essere collegato tramite fecth all 'endpoint e si può usare il rest operator per
     riempire l'oggetto del singolo commento (d4 - reservation form)
-*/}
+*/

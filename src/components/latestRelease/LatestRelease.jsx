@@ -5,21 +5,15 @@ import Form from 'react-bootstrap/Form';
 import { nanoid } from 'nanoid';
 import { allBooks, getBooks } from '../../reducers/booksReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { allComments, getComments } from '../../reducers/commentReducer';
-
+import CommentArea from '../CommentArea/CommentArea';
 
 function LatestRelease() {
 
   const dispatch = useDispatch()
   const booksFromApi = useSelector(allBooks)
+  const [selectedBook, setSelectedBook] = useState(null);
 
   // const commentsFromApi = useSelector(allComments) 
-
-  // console.log(commentsFromApi)
-
-  // console.log('Books', booksFromApi.asin)
-  // console.log('Comments', commentsFromApi)
- 
 
   // const [searchText, setSearchText] = useState('');
   // const [filteredBooks, setFilteredBooks] = useState(booksFromApi);
@@ -35,17 +29,22 @@ function LatestRelease() {
   //   setFilteredBooks(filtered);
   // };
 
-
+  
   useEffect(() => {
     dispatch(getBooks())
-    // dispatch(getComments())
   },[])
-
+  
+  const handleBookSelect = (selectedBookInfo) => {
+    setSelectedBook(selectedBookInfo);
+  };
+  
   return (
     <>
       <Container className="py-5">
         <Row>
-          {/* <Col xs={12}>
+          <Col lg={8}>
+            <Row>
+            {/* <Col xs={12}>
             <Form.Control
               type="text"
               placeholder="Cerca un libro..."
@@ -65,9 +64,18 @@ function LatestRelease() {
                 category={book.category}
                 price={book.price}
                 btn="guarda"
+                onBookSelect={handleBookSelect}
               ></SingleBook>
             </Col>
           ))}
+            </Row>
+          </Col>
+          <Col lg={4}>
+          {selectedBook && <CommentArea bookId={selectedBook.asin} />}
+          </Col>
+        </Row>
+        <Row>
+
         </Row>
       </Container>
     </>

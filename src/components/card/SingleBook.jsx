@@ -1,22 +1,24 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './SingleBook.css';
-import CommentArea from '../CommentArea/CommentArea';
 
-const SingleBook =({title, category, price, btn, img, asin}) => {
+const SingleBook =({title, category, price, btn, img, asin, onBookSelect}) => {
   
-  const [selected, setSelected] = useState(false)
+  const [isSelected, setIsSelected] = useState(false);
 
-  const selectedBook = () => {
-    setSelected((prevState) => !prevState);
-  }
+  const handleBookClick = () => {
+    setIsSelected(!isSelected);
+    onBookSelect({ title, category, price, img, asin });
+  };
+
+  const cardClass = isSelected ? 'selected-card' : '';
 
   return (
         <>
         <Card id={asin}
-          className={selected ? 'selected' : ''}
-          onClick={selectedBook}
+          onClick={handleBookClick}
+          className={`single-book-card ${cardClass}`}
         >
             <Card.Img variant="top" src={img} />
             <Card.Body>
@@ -28,9 +30,6 @@ const SingleBook =({title, category, price, btn, img, asin}) => {
                 <Button variant="primary">{btn}</Button>
             </Card.Body>
         </Card>
-        {selected && (
-          <CommentArea bookId={asin} />
-        )}
         
         </>
   )
