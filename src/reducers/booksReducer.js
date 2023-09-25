@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // Dichiariamo gli stati iniziali
 const initialState = {
     books: [],
-    selectedBookId: null, // Aggiunto per memorizzare l'ID del libro selezionato
+    selectedBookId: null,
     isLoading: false,
     error: null
 }
@@ -26,9 +26,9 @@ const booksSlice = createSlice({
     name: 'getBooks', // nome dello Slice
     initialState, // passaggio dello stato iniziale
     reducers: {
-        setSelectedBookId: (state, action) => {
-            state.selectedBookId = action.payload;
-        }
+        // setSelectedBookId: (state, action) => {
+        //     state.selectedBookId = action.payload;
+        // }
     },
     extraReducers: (builder) => { // definizione dei 3 casi della Promise
         builder

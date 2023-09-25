@@ -8,7 +8,7 @@
   import { Provider } from 'react-redux';
   import { combineReducers, configureStore } from '@reduxjs/toolkit';
   import booksReducer from './reducers/booksReducer';
-  import commentReducer from './reducers/commentReducer';
+  import commentReducer from './reducers/comment/commentReducer';
 
 
   const reducer = combineReducers({

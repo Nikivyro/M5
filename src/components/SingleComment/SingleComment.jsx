@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteComment, updateComment } from '../../reducers/commentReducer';
+import { deleteComment, updateComment } from '../../reducers/comment/commentReducer';
 
 const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updatedAt }) => {
   
@@ -14,7 +14,7 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
   })
   
   const handleEditClick = () => {
-    setIsEditing(true); // Set edit mode to true when "modifica" button is clicked
+    setIsEditing(true);
   }
 
   const handleChange = (e) => {
@@ -27,7 +27,6 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
   
   const handleDeleteComment = async (_id) => {
     try {
-      // Chiamare l'action deleteComment con l'ID del commento da eliminare
       await dispatch(deleteComment({ commentId: _id }));
       console.log(`Commento con ID ${_id} eliminato con successo`);
     } catch (error) {
@@ -40,7 +39,7 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
     
     try {
       await dispatch(updateComment({ commentId: _id, updatedCommentData: formData }));
-      setIsEditing(false); // Exit edit mode after submitting changes
+      setIsEditing(false);
       console.log(`Commento con ID ${_id} aggiornato con successo`);
     } catch (error) {
       console.error('Errore durante l\'aggiornamento del commento:', error);
@@ -48,16 +47,14 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
   }
 
   return (
-<li>
-      <h3>Commento: {comment}</h3>
+  <li className='border-bottom mb-2'>
+      <p>Commento: {comment}</p>
       <p>Valutazione: {rate}</p>
       <p>asin: {elementId}</p>
       <p>Id: {_id}</p>
       <p>Author: {author}</p>
       <p>Creato il: {createdAt}</p>
       <p>Aggiornato il: {updatedAt}</p>
-
-      {/* Display the edit form when isEditing is true */}
       {isEditing ? (
         <form onSubmit={(e) => handleUpdateComment(_id, e)}>
           <label>
@@ -83,7 +80,6 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
           <button type="submit">Salva</button>
         </form>
       ) : (
-        // Display the "modifica" button when not in edit mode
         <button onClick={handleEditClick}>modifica</button>
       )}
 

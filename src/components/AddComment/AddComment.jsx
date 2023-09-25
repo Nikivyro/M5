@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addComment } from '../../reducers/commentReducer'
+import { addComment } from '../../reducers/comment/commentReducer'
 
 export default function AddComment({bookId}) {
   
@@ -36,7 +36,8 @@ export default function AddComment({bookId}) {
 
 
   return (
-      <div>
+      <div className="border p-2 shadow">
+        <h3>Scrivi un commento</h3>
         <form
           onSubmit={handleSubmit}
         >

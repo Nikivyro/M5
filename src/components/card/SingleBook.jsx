@@ -3,24 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './SingleBook.css';
 
-const SingleBook =({title, category, price, btn, img, asin, onBookSelect}) => {
+const SingleBook =({ asin, img, title, category, price, btn, onClick, isSelected }) => {
   
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handleBookClick = () => {
-    setIsSelected(!isSelected);
-    onBookSelect({ title, category, price, img, asin });
-  };
-
-  const cardClass = isSelected ? 'selected-card' : '';
-
   return (
         <>
-        <Card id={asin}
-          onClick={handleBookClick}
-          className={`single-book-card ${cardClass}`}
+        <Card 
+          id={asin}
+          className={isSelected ? 'selected' : ''}
         >
-            <Card.Img variant="top" src={img} />
+            <Card.Img variant="top" src={img} onClick={onClick}/>
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>

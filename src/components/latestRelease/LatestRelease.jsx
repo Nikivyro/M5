@@ -6,11 +6,13 @@ import { nanoid } from 'nanoid';
 import { allBooks, getBooks } from '../../reducers/booksReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import CommentArea from '../CommentArea/CommentArea';
+import Fantasy from '../../data/fantasy.json';
 
 function LatestRelease() {
 
   const dispatch = useDispatch()
   const booksFromApi = useSelector(allBooks)
+
   const [selectedBook, setSelectedBook] = useState(null);
 
   // const commentsFromApi = useSelector(allComments) 
@@ -34,9 +36,6 @@ function LatestRelease() {
     dispatch(getBooks())
   },[])
   
-  const handleBookSelect = (selectedBookInfo) => {
-    setSelectedBook(selectedBookInfo);
-  };
   
   return (
     <>
@@ -55,7 +54,7 @@ function LatestRelease() {
             />
             <button onClick={handleSearch}>Cerca</button>
           </Col> */}
-          {booksFromApi.map((book) => (
+          {Fantasy.map((book) => (
             <Col key={nanoid()} xs={6} md={4} lg={3}>
               <SingleBook
                 asin={book.asin}
@@ -64,14 +63,19 @@ function LatestRelease() {
                 category={book.category}
                 price={book.price}
                 btn="guarda"
-                onBookSelect={handleBookSelect}
+                onClick={() => setSelectedBook(book)}
+                isSelected={selectedBook?.asin === book.asin}
               ></SingleBook>
             </Col>
           ))}
             </Row>
           </Col>
           <Col lg={4}>
-          {selectedBook && <CommentArea bookId={selectedBook.asin} />}
+          {selectedBook && (
+            <CommentArea 
+              title={selectedBook.title}
+              bookId={selectedBook.asin} />
+          )}
           </Col>
         </Row>
         <Row>

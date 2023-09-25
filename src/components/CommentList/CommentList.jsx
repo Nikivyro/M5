@@ -4,8 +4,8 @@ import { nanoid } from 'nanoid';
 
 export default function CommentList({comments}) {
   return (
-    <div>
-      <h2>Lista recensioni</h2>
+    <div className="border p-2 shadow my-4">
+      <h5>Lista recensioni</h5>
       <ul>
         {comments.map((comment) => (
           <SingleComment
