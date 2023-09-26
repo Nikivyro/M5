@@ -57,8 +57,6 @@ export const deleteComment = createAsyncThunk(
             if (!response.ok) {
                 throw new Error('Errore durante l\'eliminazione del commento');
             }
-
-            // Restituisci l'ID del commento eliminato
             return commentId;
         } catch (error) {
             console.error('Errore:', error);
@@ -115,7 +113,7 @@ const commentsSlice = createSlice({
             })
             .addCase(addComment.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.comments.push(action.payload); // Aggiungi il nuovo commento alla lista
+                state.comments.push(action.payload);
             })
             .addCase(addComment.rejected, (state) => {
                 state.isLoading = false;
@@ -123,7 +121,6 @@ const commentsSlice = createSlice({
             })
             .addCase(deleteComment.fulfilled, (state, action) => {
                 state.isLoading = false;
-                // Rimuovi il commento con l'ID corrispondente dalla lista dei commenti
                 state.comments = state.comments.filter((comment) => comment._id !== action.payload);
             })
             .addCase(deleteComment.rejected, (state) => {
@@ -132,7 +129,6 @@ const commentsSlice = createSlice({
             })
             .addCase(updateComment.fulfilled, (state, action) => {
                 state.isLoading = false;
-                // Aggiorna il commento nella lista con i dati aggiornati
                 state.comments = state.comments.map((comment) =>
                     comment._id === action.payload._id ? action.payload : comment
                 );
@@ -149,30 +145,3 @@ export const isCommentsLoading = (state) => state.commentsStore.isLoading;
 export const CommentsError = (state) => state.commentsStore.error;
 
 export default commentsSlice.reducer;
-
-
-
-/* 
-    ENDPOINT
-    https://striveschool-api.herokuapp.com/api/comments/
-
-    fetch("https://striveschool-api.herokuapp.com/api/put-your-endpoint-here/", {
-        headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU0ODRmZGRmZmI4YjAwMTQ0MTNiYjEiLCJpYXQiOjE2OTUwNTkwNzUsImV4cCI6MTY5NjI2ODY3NX0.HGN8IMt2TuXfcJ06hBWyHhAghtJCA5E_ap3fKHi75_A"
-        }
-    })
-                
-    Il componente deve essere renderizzato nel momento in cui il selected viene visualizzato 
-    Eseguo una fecth all'endpoint https://striveschool-api.herokuapp.com/api/comments/ con l'autenticazione
-    GET, POST e DELETE per i commenti
-    GET nei CommentiList -> Renderizza tutti i commenti all'intenro del componente SingleComment
-    POST nell'AddComment -> Tramite gli input si scrivono delle recensioni e si fa il post alle API tramite onclick sul button
-
-    extra
-    fare DELETE E PUT
-    fare messaggi di errore e spinner
-
-
-    Il form utilizzato per i metodi dovrà essere collegato tramite fecth all 'endpoint e si può usare il rest operator per
-    riempire l'oggetto del singolo commento (d4 - reservation form)
-*/

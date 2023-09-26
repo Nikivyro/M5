@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './SingleBook.css';
+import { Link } from 'react-router-dom';
 
 const SingleBook =({ asin, img, title, category, price, btn, onClick, isSelected }) => {
   
@@ -18,7 +19,11 @@ const SingleBook =({ asin, img, title, category, price, btn, onClick, isSelected
                 {category}
                 {price}
                 </Card.Text>
-                <Button variant="primary">{btn}</Button>
+                <Button>
+                  <Link to={`/book/${asin}`}>
+                        {btn}
+                  </Link>
+                </Button>
             </Card.Body>
         </Card>
         
