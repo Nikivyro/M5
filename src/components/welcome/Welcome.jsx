@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-
+import './Welcome.css';
 const Welcome = () => {
   return(
       <div className='jumbotron p-5 bg-dark text-white'>

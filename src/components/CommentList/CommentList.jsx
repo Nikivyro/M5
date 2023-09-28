@@ -1,12 +1,14 @@
 import React from 'react';
 import SingleComment from '../SingleComment/SingleComment';
 import { nanoid } from 'nanoid';
+import { Card, Row } from 'react-bootstrap';
 
 export default function CommentList({comments}) {
   return (
-    <div className="border p-2 shadow my-4">
-      <h5>Lista recensioni</h5>
-      <ul>
+    <Card>
+      <Card.Body>
+      <Card.Title>Lista recensioni</Card.Title>
+      <Row className='mt-3'>
         {comments.map((comment) => (
           <SingleComment
             key={nanoid()}
@@ -15,11 +17,12 @@ export default function CommentList({comments}) {
             comment={comment.comment}
             author={comment.author}
             rate={comment.rate}
-            createdAt={comment.createdAt}
-            updatedAt={comment.updatedAt}
+            // createdAt={comment.createdAt}
+            // updatedAt={comment.updatedAt}
             />
         ))}
-      </ul>
-    </div>
+      </Row>
+      </Card.Body>
+    </Card>
   );
 }

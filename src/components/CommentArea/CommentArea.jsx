@@ -12,16 +12,16 @@ export default function CommentArea({bookId, title}) {
 
     useEffect(()=>{
         dispatch(getComments(bookId))
-    },[bookId])
+    },[bookId, dispatch])
 
     return (
-        <>
+        <div className='sticky-top'>
         <div className='mb-3'>
-            <h4>Commenti di {title}</h4>
+            <h5>Commenti di <br></br><span className='h4 text-primary'>{title}</span></h5>
         </div>
         <AddComment bookId={bookId} />
         <CommentList comments={commentsFromApi}/>
-        </>
+        </div>
     )
 }
 

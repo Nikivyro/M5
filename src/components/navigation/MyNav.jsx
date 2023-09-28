@@ -3,41 +3,40 @@ import { connect } from "react-redux";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { nanoid } from "nanoid";
 import { updateInputValue } from "../../reducers/inputReducer";
+import { Link } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
 
-const MyNav = ({ links, inputValue, updateInputValue }) => {
+
+const MyNav = ({ inputValue, updateInputValue  }) => {
   
-  const handleInputChange = (e) => {
-    updateInputValue(e.target.value);
-  };
-
   const handleButtonClick = () => {
-    console.log(inputValue);
+      updateInputValue(inputValue);
   };
   
   return(
     <Navbar expand="lg" className="bg-body-tertiary">
     <Container>
-      <Navbar.Brand href="#home">Epibooks</Navbar.Brand>
+      <Navbar.Brand>
+        <Link to='/' className="text-decoration-none text-dark">Epibooks</Link>        
+      </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-            {links.map((link) =>(
-                <Nav.Link key={nanoid()} href={link.href}>{link.label}</Nav.Link>
-                )
-            )}
+        <Nav className="me-auto">            
+          <Nav.Link>Home</Nav.Link>
+          <Nav.Link>About</Nav.Link>
+          <Nav.Link>Browse</Nav.Link>              
         </Nav>
         </Navbar.Collapse>
-        <div>
-            <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Inserisci un valore"
-          />
-          <button onClick={handleButtonClick}>Invia</button>
-        </div> 
+          <div className="d-flex">
+              <Form.Control
+              type="text"
+              value={inputValue}
+              onChange={(e) => updateInputValue(e.target.value)}
+              placeholder="Inserisci un valore"
+            />
+            <Button variant='primary' onClick={handleButtonClick}><i className='bi bi-search'></i></Button>
+          </div> 
       </Container>
     </Navbar>
   )

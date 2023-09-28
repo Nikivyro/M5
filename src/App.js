@@ -4,8 +4,6 @@ import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import BookDetail from './pages/BookDetail';
 
-// import ReservationForm from './components/ReservationForm/ReservationForm';
-
 export default function App() {
   return (
       <BrowserRouter>

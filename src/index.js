@@ -1,31 +1,32 @@
-  import React from 'react';
-  import ReactDOM from 'react-dom/client';
-  import './index.css';
-  import App from './App';
-  import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-  // Configurazione Redux su React
-  import { Provider } from 'react-redux';
-  import { combineReducers, configureStore } from '@reduxjs/toolkit';
-  import booksReducer from './reducers/booksReducer';
-  import commentReducer from './reducers/comment/commentReducer';
-  import inputReducer from './reducers/inputReducer';
+// Configurazione Redux su React
+import { Provider } from 'react-redux';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import booksReducer from './reducers/booksReducer';
+import commentReducer from './reducers/comment/commentReducer';
+import inputReducer from './reducers/inputReducer';
+import darkModeReducer from './reducers/darkModeReducer';
 
+const reducer = combineReducers({
+  booksStore: booksReducer,
+  commentsStore : commentReducer,
+  input: inputReducer,
+  darkMode: darkModeReducer,
+})
+const store = configureStore({
+  reducer,
+})
 
-  const reducer = combineReducers({
-    booksStore: booksReducer,
-    commentsStore : commentReducer,
-    input: inputReducer
-  })
-  const store = configureStore({
-    reducer,
-  })
-
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-  );
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);

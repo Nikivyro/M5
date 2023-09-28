@@ -28,7 +28,7 @@ export const getSingleBook = createAsyncThunk(
         try {
             const response = await fetch(`https://epibooks.onrender.com/${bookId}`)
             const data = await response.json();
-            console.log("Data from API:", data); // Aggiungi questo per il debug
+            //console.log("Data from API:", data);
             return data;
         } catch(e) {
             console.log(e)
