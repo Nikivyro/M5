@@ -11,10 +11,14 @@ function LatestRelease() {
 
   const dispatch = useDispatch()
   const booksFromApi = useSelector(allBooks)
+  const inputValue = useSelector((state) => state.input.inputValue);
 
   const [selectedBook, setSelectedBook] = useState(null);
   const colRef = useRef(null)
 
+  const filteredBooks = booksFromApi.filter((book) =>
+    book.title.toLowerCase().includes(inputValue.toLowerCase())
+  );
   
   useEffect(() => {
     dispatch(getBooks())
@@ -27,7 +31,7 @@ function LatestRelease() {
         <Row>
           <Col lg={8}>
             <Row>
-            {booksFromApi.map((book) => (
+            {filteredBooks.map((book) => (
               <Col key={nanoid()} xs={6} md={4} lg={3} ref={colRef}>
                 <SingleBook
                   asin={book.asin}

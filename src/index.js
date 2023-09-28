@@ -9,11 +9,13 @@
   import { combineReducers, configureStore } from '@reduxjs/toolkit';
   import booksReducer from './reducers/booksReducer';
   import commentReducer from './reducers/comment/commentReducer';
+  import inputReducer from './reducers/inputReducer';
 
 
   const reducer = combineReducers({
     booksStore: booksReducer,
-    commentsStore : commentReducer
+    commentsStore : commentReducer,
+    input: inputReducer
   })
   const store = configureStore({
     reducer,

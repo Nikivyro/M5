@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { nanoid } from "nanoid";
+import { updateInputValue } from "../../reducers/inputReducer";
 
-const MyNav = ({links}) => {
+const MyNav = ({ links, inputValue, updateInputValue }) => {
   
-  // Definisci uno stato per gestire il valore dell'input
-  const [inputValue, setInputValue] = useState('');
-
-  // Funzione per gestire il cambiamento dell'input
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    updateInputValue(e.target.value);
   };
 
-  // Funzione per gestire il click del tasto
   const handleButtonClick = () => {
-    // Fai qualcosa con il valore dell'input, ad esempio, stampalo in console
     console.log(inputValue);
   };
   
@@ -35,16 +31,24 @@ const MyNav = ({links}) => {
         </Navbar.Collapse>
         <div>
             <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder="Inserisci un valore"
-            />
-            <button onClick={handleButtonClick}>Invia</button>
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Inserisci un valore"
+          />
+          <button onClick={handleButtonClick}>Invia</button>
         </div> 
       </Container>
     </Navbar>
   )
 }
 
-export default MyNav
+const mapStateToProps = (state) => ({
+  inputValue: state.input.inputValue,
+});
+
+const mapDispatchToProps = {
+  updateInputValue,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyNav);
