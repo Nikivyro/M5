@@ -1,4 +1,7 @@
+.allBooks .card{
+  cursor: pointer;
+}
 .selected {
   border: 2px solid red!important; 
-  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5); 
+  box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteComment, updateComment } from '../../reducers/comment/commentReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteComment, isCommentsLoading, updateComment } from '../../reducers/comment/commentReducer';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
 
 const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updatedAt }) => {
   const dispatch = useDispatch();
-  
+  const commentsLoading = useSelector(isCommentsLoading)
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleDeleteComment = () => {
@@ -58,7 +58,7 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
 
   return (
     <Col xs={12} className="mb-2">
-      <div className="p-3 border rounded-2 bg-light">
+      <div className="p-3 border rounded-2 bg-body-tertiary">
         <p>
           <b>Commento:</b> {comment}
         </p>
@@ -91,7 +91,13 @@ const SingleComment = ({ _id, elementId, author, comment, createdAt, rate, updat
               />
             </Form.Group>
             <Button variant="success" type="submit">
-              <i className="bi bi-floppy me-1"></i>Salva
+              {commentsLoading ? (
+                <>
+                  <Spinner animation="grow" />...
+                </>
+              ) : (
+                <><i className="bi bi-floppy me-1"></i>Salva</>
+              )}
             </Button>
           </Form>
         ) : (

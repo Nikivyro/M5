@@ -18,7 +18,7 @@ const SingleBook =({ asin, img, title, category, price, btn, onClick, isSelected
                 <Card.Title className='text-truncate'>{title}</Card.Title>
                 <Card.Text>
                 <Badge bg='secondary'>{category}</Badge>
-                <h5>€ {price}</h5>
+                <span className='h5'>€ {price}</span>
                 </Card.Text>
                 <Button>
                   <Link to={`/book/${asin}`} className='text-white text-decoration-none'>

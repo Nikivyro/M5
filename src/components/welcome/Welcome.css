@@ -1,6 +1,7 @@
 .jumbotron{
-    min-height: 30vh;
+    min-height: 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(rgb(0 0 0 / 30%), rgb(0 0 0 / 60%)), url(https://img.freepik.com/free-photo/top-view-books-arrangement_23-2148882754.jpg?w=1060&t=st=1695997786~exp=1695998386~hmac=94e6a80b3560d50b953d746a127db6e453e786c5bcae8a2656020301ba8b141f) center / cover;
 }

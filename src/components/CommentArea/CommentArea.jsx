@@ -16,11 +16,11 @@ export default function CommentArea({bookId, title}) {
 
     return (
         <div className='sticky-top'>
-        <div className='mb-3'>
-            <h5>Commenti di <br></br><span className='h4 text-primary'>{title}</span></h5>
-        </div>
-        <AddComment bookId={bookId} />
-        <CommentList comments={commentsFromApi}/>
+            <div className='mb-3'>
+                <h5>Commenti di <br></br><span className='h4 text-primary'>{title}</span></h5>
+            </div>
+            <AddComment bookId={bookId} />
+            <CommentList comments={commentsFromApi}/>
         </div>
     )
 }
